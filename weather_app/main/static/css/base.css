@@ -10,3 +10,7 @@
     .weather-card p {
       margin-bottom: 5px;
     }
+
+body {
+    color: green;
+}

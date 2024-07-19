@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Погода{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/weather.css' %}">
+{% endblock %}
 
 {% block content %}
   <h1 class="text-center mb-4">Погода</h1>
@@ -9,8 +13,10 @@
     <input type="text" class="form-control" placeholder="Введите город" id="city-input">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать</button>
-      <div class="dropdown-menu" id="city-dropdown"></div>
     </div>
+  </div>
+  <div class="dropdown-list mb-4" id="city-dropdown">
+
   </div>
 
   <div class="row" id="weather-container">
@@ -19,4 +25,5 @@
 {% endblock %}
 
 {% block scripts %}
+  <script src="{% static 'js/weather.js' %}"></script>
 {% endblock %}
