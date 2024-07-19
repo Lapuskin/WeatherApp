@@ -1,0 +1,12 @@
+.weather-card {
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+    }
+    .weather-card h4 {
+      margin-bottom: 10px;
+    }
+    .weather-card p {
+      margin-bottom: 5px;
+    }
