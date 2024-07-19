@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Погода{% endblock %}
+
+{% block content %}
+  <h1 class="text-center mb-4">Погода</h1>
+
+  <div class="input-group mb-4">
+    <input type="text" class="form-control" placeholder="Введите город" id="city-input">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать</button>
+      <div class="dropdown-menu" id="city-dropdown"></div>
+    </div>
+  </div>
+
+  <div class="row" id="weather-container">
+    <!-- Здесь будут отображаться блоки с погодой -->
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    // Ваш JavaScript-код для работы с API и отображения погоды
+  </script>
+{% endblock %}
