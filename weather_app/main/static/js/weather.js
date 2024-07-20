@@ -21,8 +21,11 @@ async function createButtons(query) {
   const data = await searchData(query);
   console.log('data is', data);
 
+  const latitude = document.getElementById('latitude-input');
+  const longitude = document.getElementById('longitude-input');
+
   data.forEach(city => {
-//    console.log(city);
+    //    console.log(city);
     const buttonElement = document.createElement('button');
     buttonElement.textContent = city.name;
     const span = document.createElement('span');
@@ -33,15 +36,29 @@ async function createButtons(query) {
     buttonElement.appendChild(br);
     buttonElement.appendChild(span);
 
-//    buttonElement.addEventListener('click', button.onClick);
+    buttonElement.addEventListener('click', () => {
+      buttonClickHandler(city, latitude, longitude, searchInput);
+    });
+
     buttonsContainer.appendChild(buttonElement);
   });
 }
 
+function buttonClickHandler(city, latitude, longitude, searchInput) {
+  const buttonsContainer = document.getElementById('city-dropdown');
+
+  buttonsContainer.style.display = 'none'  
+  latitude.value = city.latitude;
+  longitude.value = city.longitude;
+  searchInput.value = city.name;
+
+
+}
+
 const searchInput = document.getElementById('city-input');
 searchInput.addEventListener('input', (event) => {
-  if(event.target.value){
-    const query = event.target.value;
-    createButtons(query);
-  }
+  const buttonsContainer = document.getElementById('city-dropdown');
+  const query = event.target.value;
+  createButtons(query);
+  buttonsContainer.style.display = 'flex'
 });

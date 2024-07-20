@@ -1,29 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Погода{% endblock %}
+{% block title %}Weather, are you OK?{% endblock %}
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/weather.css' %}">
 {% endblock %}
 
 {% block content %}
-  <h1 class="text-center mb-4">Погода</h1>
+<h1 class="text-center mb-4">Weather, are you OK?</h1>
+  <form method="post" action="{% url 'weather_url' %}" class="input-group mb-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-secondary" type="submit">Get weather</button>
+</form>
+<div class="dropdown-list mb-4" id="city-dropdown">
 
-  <div class="input-group mb-4">
-    <input type="text" class="form-control" placeholder="Введите город" id="city-input">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выбрать</button>
+</div>
+
+<div class="row" id="weather-container">
+  {% for day in weather_data.daily %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">{{ day.time }}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <strong>Min-Temperature:</strong> {{ day.temperature_2m_min }}{{weather_data.daily_units.temperature_2m_min}}<br>
+          <strong>Max-Temperature:</strong> {{ day.temperature_2m_max }}{{weather_data.daily_units.temperature_2m_max}}<br>
+        </p>
+      </div>
+      <div class="card-footer text-muted">
+        <small>Latitude: {{ weather_data.latitude }}, Longitude: {{ weather_data.longitude }}</small>
+      </div>
     </div>
   </div>
-  <div class="dropdown-list mb-4" id="city-dropdown">
-
-  </div>
-
-  <div class="row" id="weather-container">
-    <!-- Здесь будут отображаться блоки с погодой -->
-  </div>
+  {% endfor %}
+</div>
 {% endblock %}
 
 {% block scripts %}
-  <script src="{% static 'js/weather.js' %}"></script>
+<script src="{% static 'js/weather.js' %}"></script>
 {% endblock %}
