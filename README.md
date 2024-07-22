@@ -12,12 +12,18 @@
 - [х] сделаны автодополнение (подсказки) при вводе города
 
 ## Запуск
+### Используя Docker-compose
+- запустить команду `docker-compose up -d` в корне проекта
+- перейти на 127.0.0.1:8000 в строке браузера
+### Примитивно
 - установить зависимости через pip:
+
 `pip install -r requirements.txt`
 - подготовить джанго к запуску и запустить тестовый веб-сервер:
 
-`python3 weather_app/manage.py migrate`
+`cd weather_app`
 
-`python3 weather_app/manage.py runserver
-`
+`python3 manage.py migrate`
+
+`python3 manage.py runserver`
 - перейти на 127.0.0.0:8000 в строке браузера.
